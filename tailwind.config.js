@@ -8,7 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-
+      backgroundImage: {
+        'hero-pattern': "url('/assets/backgrounds/Colored Shapes.svg')",
+        'curved-line': "url('/assets/backgrounds/Curve Line.svg')"
+      },
       fontFamily : {
         Kanit : ['Kanit'],
         OpenSans : ['Open Sans']
