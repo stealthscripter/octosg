@@ -5,3 +5,9 @@
 input[type='checkbox'] {
     accent-color: #66B2B2;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

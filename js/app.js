@@ -4,6 +4,8 @@
 const readyBtn = document.getElementById('readyBtn')
 const startBtn = document.getElementById('startBtn')
 const againBtn = document.getElementById('againBtn')
+const setBtn = document.getElementById('setBtn')
+
 const firstSection = document.getElementById('firstSection')
 const secondSection = document.getElementById('secondSection')
 const resultSection = document.getElementById('resultSection')
@@ -15,6 +17,12 @@ const aiChoice2 = document.getElementById('Cchoice2')
 
 const humanFingerAmount = document.getElementById('hNoFingers')
 const computerFingerAmount = document.getElementById('cNoFingers')
+
+const userFingers = document.getElementById('userFingers')
+
+window.onload = function(){
+    userFingers.focus()
+}
 
 const winnerText = document.getElementById('winner')
 
@@ -36,7 +44,6 @@ const amharicObj = {
     'oli' : 'ኦሊ'
 }
 
-const userFingers = document.getElementById('userFingers')
 let computerFingers
 
 const fingerValues = ['desto','finger','caw','cawter','oli']
@@ -126,6 +133,7 @@ const changeImage = (computerFingerAmount , humanFingerAmount) => {
     userImage1.src = ""
     userImage2.src = ""
     if (computerFingerAmount <= 5){
+        computerImage2.src= `/assets/fingers/finger-${0}.png`
         computerImage1.src= `/assets/fingers/finger-${computerFingerAmount}.png`
     }
     else{
@@ -141,7 +149,8 @@ const changeImage = (computerFingerAmount , humanFingerAmount) => {
     }
 
     if (humanFingerAmount <= 5){
-        userImage1.src= `/assets/fingers/finger-${humanFingerAmount}.png`
+        userImage1.src= `/assets/fingers/finger-${0}.png`
+        userImage2.src= `/assets/fingers/finger-${humanFingerAmount}.png`
         
     }
     else{
@@ -183,4 +192,14 @@ startBtn.addEventListener('click',() => {
 againBtn.addEventListener('click', () => {
     secondSection.classList.remove('hidden')
     resultSection.classList.add('hidden')
+})
+setBtn.addEventListener('click',() => {
+     userChoice = []
+     computerChoice = []
+     userChoiceValue = []
+     computerChoiceValue = []
+    
+     resultSection.classList.add('hidden')
+    secondSection.classList.add('hidden')
+    firstSection.classList.remove('hidden')
 })
