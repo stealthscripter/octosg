@@ -20,6 +20,12 @@ const computerScoreNumber = document.getElementById('computerScoreNumber')
 const aiChoice1 = document.getElementById('Cchoice1')
 const aiChoice2 = document.getElementById('Cchoice2')
 
+const userChoice1Text = document.getElementById('Hchoice11')
+const userChoice2Text = document.getElementById('Hchoice22')
+const computerChoice1Text = document.getElementById('Cchoice11')
+const computerChoice2Text = document.getElementById('Cchoice22')
+
+
 const humanFingerAmount = document.getElementById('hNoFingers')
 const computerFingerAmount = document.getElementById('cNoFingers')
 
@@ -53,6 +59,11 @@ const fingerValues = ['desto','finger','caw','cawter','oli']
 
 let rounds = 0
 
+let userChoice1 = ''
+let userChoice2 = ''
+
+let computerChoice1 = ''
+let computerChoice2 = ''
 let userScore = 0
 
 let computerScore = 0
@@ -140,11 +151,18 @@ readyBtn.addEventListener('click',  (e) => {
     })
     makeComputerChoice(userChoice)
     console.log(userChoice , computerChoice)
-    humanChoice1.textContent = userChoice[0]
-    humanChoice2.textContent = userChoice[1]
 
-    aiChoice1.textContent = computerChoice[0]
-    aiChoice2.textContent = computerChoice[1]
+    userChoice1 = userChoice[0]
+    userChoice2 = userChoice[1]
+
+    computerChoice1 = computerChoice[0]
+    computerChoice2 = computerChoice[1]
+
+    humanChoice1.textContent = userChoice1
+    humanChoice2.textContent = userChoice2
+
+    aiChoice1.textContent = computerChoice1
+    aiChoice2.textContent = computerChoice2
 
 })
 
@@ -217,6 +235,12 @@ startBtn.addEventListener('click',() => {
     roundCounter.textContent = rounds
     winnerText.textContent = winner
     winnerFingerText.textContent = resultFinger
+
+    userChoice1Text.textContent = userChoice1
+    userChoice2Text.textContent = userChoice2
+
+    computerChoice1Text.textContent = computerChoice1
+    computerChoice2Text.textContent = computerChoice2
 })
 
 againBtn.addEventListener('click', () => {

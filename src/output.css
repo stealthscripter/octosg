@@ -566,6 +566,10 @@ video {
   margin: 0px;
 }
 
+.m-24 {
+  margin: 6rem;
+}
+
 .m-5 {
   margin: 1.25rem;
 }
@@ -578,6 +582,11 @@ video {
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.my-24 {
+  margin-top: 6rem;
+  margin-bottom: 6rem;
 }
 
 .my-5 {
@@ -607,6 +616,14 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
 }
 
 .box-border {
