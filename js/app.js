@@ -64,6 +64,7 @@ let userChoice2 = ''
 
 let computerChoice1 = ''
 let computerChoice2 = ''
+
 let userScore = 0
 
 let computerScore = 0
