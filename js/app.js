@@ -99,12 +99,17 @@ const makeComputerChoice = (userChoice) =>{
     }
     computerChoice = filterChoice
 }
-const checkWinner = (userChoice , computerChoice , computerFingers , userFingers) =>{
 
+const pushChoiceToArray = (computerChoice , userChoice) =>{
     for(let i =0 ; i < 2; i++){
         userChoiceValue.push(fingerComparision[userChoice[i]])
         computerChoiceValue.push(fingerComparision[computerChoice[i]])
     }
+}
+const checkWinner = (userChoice , computerChoice , computerFingers , userFingers) =>{
+
+    pushChoiceToArray(computerChoice , userChoice)
+
     console.log(userChoiceValue)
     console.log(computerChoiceValue)
 
@@ -112,12 +117,7 @@ const checkWinner = (userChoice , computerChoice , computerFingers , userFingers
 
     const totalReminderFinger =  parseInt(userFingers) + computerFingers
 
-    if (totalReminderFinger % 5 == 0){
-        totalFingerValue = 5
-    }
-    else{
-        totalFingerValue = totalReminderFinger % 5
-    }
+    totalReminderFinger % 5 == 0 ? totalFingerValue = 5 : totalFingerValue = totalReminderFinger % 5
 
     if(userChoiceValue.includes(totalFingerValue)){
         userScore++;
@@ -134,9 +134,9 @@ const checkWinner = (userChoice , computerChoice , computerFingers , userFingers
         console.log('Draw')
     }
 
-    function getKeyByValue(obj,value){
-        return Object.keys(obj).filter(key => obj[key] === value) 
-    }
+    // function getKeyByValue(obj,value){
+    //     return Object.keys(obj).filter(key => obj[key] === value) 
+    // }
     resultFinger = getKeyByValue(fingerComparision , totalFingerValue)
     console.log(`result is ${resultFinger}`)
 }
