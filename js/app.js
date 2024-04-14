@@ -81,6 +81,8 @@ let userChoiceValue = []
 
 let computerChoiceValue = []
 
+let functionExecuted = false
+
 const fingerComparision = {'desto' : 1 , 'finger' : 2, 'caw' : 3 , 'cawter' : 4 , 'oli' : 5}
 
 function getKeyByValue(obj,value){
@@ -100,10 +102,12 @@ const makeComputerChoice = (userChoice) =>{
     computerChoice = filterChoice
 }
 const checkWinner = (userChoice , computerChoice , computerFingers , userFingers) =>{
-
-    for(let i =0 ; i < 2; i++){
-        userChoiceValue.push(fingerComparision[userChoice[i]])
-        computerChoiceValue.push(fingerComparision[computerChoice[i]])
+    if(!functionExecuted){
+        for(let i =0 ; i < 2; i++){
+            userChoiceValue.push(fingerComparision[userChoice[i]])
+            computerChoiceValue.push(fingerComparision[computerChoice[i]])
+        }
+        functionExecuted = true
     }
     console.log(userChoiceValue)
     console.log(computerChoiceValue)
@@ -254,6 +258,7 @@ setBtn.addEventListener('click',() => {
     document.querySelectorAll('[type="checkbox"]').forEach(item => {
         item.checked = false
     })
+    functionExecuted = false
     userFingers.value = ''
      userScore = 0, computerScore = 0, rounds = 0
      userChoice = []
