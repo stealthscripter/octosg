@@ -59,28 +59,29 @@ const fingerValues = ['desto','finger','caw','cawter','oli']
 
 let rounds = 0
 
+// Choice Text
 let userChoice1 = ''
 let userChoice2 = ''
-
 let computerChoice1 = ''
 let computerChoice2 = ''
 
+// Score Tracker
 let userScore = 0
-
 let computerScore = 0
 
-let resultFinger = ''
 
+let resultFinger = ''
 let winner = ''
 
+// Choice Array
 let userChoice = []
-
 let computerChoice = []
 
+// Choice Value by Number Array
 let userChoiceValue = []
-
 let computerChoiceValue = []
 
+let history = []
 const fingerComparision = {'desto' : 1 , 'finger' : 2, 'caw' : 3 , 'cawter' : 4 , 'oli' : 5}
 
 function getKeyByValue(obj,value){
@@ -90,14 +91,13 @@ function getKeyByValue(obj,value){
 const makeComputerChoice = (userChoice) =>{
     const userChoice1 = fingerValues[fingerValues.indexOf(userChoice[0])]
     const userChoice2 = fingerValues[fingerValues.indexOf(userChoice[1])]
-    let filterChoice = fingerValues.filter(function(value,index,arr){
+    computerChoice = fingerValues.filter(function(value,index,arr){
         return value != userChoice1 && value!= userChoice2 })
     let randomIndex = Math.floor(Math.random() * 3)
     console.log(randomIndex)
     if (randomIndex > -1){
-        filterChoice.splice(randomIndex,1)
+        computerChoice.splice(randomIndex,1)
     }
-    computerChoice = filterChoice
 }
 
 const pushChoiceToArray = (computerChoice , userChoice) =>{
@@ -106,8 +106,8 @@ const pushChoiceToArray = (computerChoice , userChoice) =>{
         computerChoiceValue.push(fingerComparision[computerChoice[i]])
     }
 }
-const checkWinner = (userChoice , computerChoice , computerFingers , userFingers) =>{
-
+const checkWinner = (userChoice , computerChoice , computerFingers , userFingers) =>{   
+    
     pushChoiceToArray(computerChoice , userChoice)
 
     console.log(userChoiceValue)
@@ -123,20 +123,19 @@ const checkWinner = (userChoice , computerChoice , computerFingers , userFingers
         userScore++;
         winner = 'User Win'
         console.log('User Win')
+        history.push('win')
     }
     else if(computerChoiceValue.includes(totalFingerValue)){
         computerScore++;
         winner = 'Computer Win'
         console.log('Computer Win')
+        history.push('lose')
     }
     else{
+        history.push('draw')
         winner = 'Result is Draw'
         console.log('Draw')
     }
-
-    // function getKeyByValue(obj,value){
-    //     return Object.keys(obj).filter(key => obj[key] === value) 
-    // }
     resultFinger = getKeyByValue(fingerComparision , totalFingerValue)
     console.log(`result is ${resultFinger}`)
 }
@@ -169,7 +168,6 @@ readyBtn.addEventListener('click',  (e) => {
 
 
 const changeImage = (computerFingerAmount , humanFingerAmount) => {
-
     rounds++;
     computerImage1.src = ""
     computerImage2.src = ""
@@ -207,22 +205,24 @@ const changeImage = (computerFingerAmount , humanFingerAmount) => {
             userImage2.src= `/assets/fingers/finger-${roundNumber}.png`
         }
     }
-
-    
-
 }
+
+
 startBtn.addEventListener('click',() => {
 
-    if(userFingers.value > 10 || userFingers.value == ''){
+    if(userFingers.value < 0 || userFingers.value > 10 || userFingers.value == ''){
         alert("Please Enter Finger Less than 10 )>:")
-        return
     }
     else{
-    secondSection.classList.add('hidden')
-    computerFingers = (Math.floor(Math.random() * 11))
-    
-    resultSection.classList.remove('hidden')
+        secondSection.classList.add('hidden')
+        resultSection.classList.remove('hidden')
+        gameStart()
+        console.log(history)
+    }
+})
 
+const gameStart = () =>{
+    computerFingers = (Math.floor(Math.random() * 11))
     humanFingerAmount.textContent = userFingers.value
     computerFingerAmount.textContent = computerFingers
     console.log('Computer Fingers : ' + computerFingers)
@@ -230,38 +230,36 @@ startBtn.addEventListener('click',() => {
     changeImage(computerFingers , Number(userFingers.value))
     checkWinner(userChoice, computerChoice , computerFingers , userFingers.value)
     console.log(amharicObj)
-    }
     computerScoreNumber.textContent = computerScore
     userScoreNumber.textContent = userScore
     roundCounter.textContent = rounds
     winnerText.textContent = winner
     winnerFingerText.textContent = resultFinger
-
     userChoice1Text.textContent = userChoice1
     userChoice2Text.textContent = userChoice2
-
     computerChoice1Text.textContent = computerChoice1
     computerChoice2Text.textContent = computerChoice2
-})
+}
 
-againBtn.addEventListener('click', () => {
-    
+againBtn.addEventListener('click', () => {    
     userFingers.value = ''
     secondSection.classList.remove('hidden')
     resultSection.classList.add('hidden')
 })
+
+
 setBtn.addEventListener('click',() => {
     document.querySelectorAll('[type="checkbox"]').forEach(item => {
         item.checked = false
     })
-    userFingers.value = ''
+     userFingers.value = ''
      userScore = 0, computerScore = 0, rounds = 0
      userChoice = []
      computerChoice = []
      userChoiceValue = []
      computerChoiceValue = []
     
-     resultSection.classList.add('hidden')
+    resultSection.classList.add('hidden')
     secondSection.classList.add('hidden')
     firstSection.classList.remove('hidden')
 })
