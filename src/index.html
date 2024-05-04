@@ -21,9 +21,13 @@
         rel="stylesheet">
 
 
+        <!--Tailwinds Cdn-->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+
 </head>
 
-<body class="font-Kanit overflow-y-hidden">
+<body class="font-Kanit ">
     
     <!--Modal-->
 
@@ -49,31 +53,40 @@
 
         <!--Game Option -->
         <section class=" p-2 m-5 mt-0">
-                <div class="flex items-center justify-center">
-                    <div class="w-fit p-2">
-                        <input type="checkbox" id="desto1" name="desto1" value="desto" class="h-5 w-8 cursor-pointer">
-                        <label for="desto1" class="capitalize text-2xl">Desto</label>
-                        <input type="checkbox" id="finger1" name="finger1" value="finger"
-                            class="h-5 w-8 cursor-pointer">
-                        <label for="finger1" class="capitalize text-2xl">Finger</label>
-
-                        <input type="checkbox" id="caw1" name="caw1" value="caw" class="h-5 w-8 cursor-pointer">
-                        <label for="caw1" class="capitalize text-2xl">Caw</label>
-
-                        <input type="checkbox" id="kawter1" name="kawter1" value="cawter"
-                            class="h-5 w-8 cursor-pointer">
-                        <label for="kawter1" class="capitalize text-2xl">Cawter</label>
-                        <input type="checkbox" id="oli1" name="oli1" value="oli" class="h-5 w-8 cursor-pointer">
-                        <label for="oli1" class="capitalize text-2xl">Oli</label>
+                <div class="flex items-center justify-center" id="checkboxgroup">
+                    <div class="w-fit p-2 flex gap-x-4">
+                        <div class="">
+                            <input type="checkbox" id="desto1" value="desto" class="peer hidden" />
+                            <label for="desto1" class="select-none cursor-pointer rounded-lg border-2 border-gray-200
+                            py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 ">Desto</label>
+                        </div>
+                        <div class=""> 
+                            <input type="checkbox" id="finger1" value="finger" class="peer hidden" />
+                            <label for="finger1" class="select-none cursor-pointer rounded-lg border-2 border-gray-200
+                            py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 ">Finger</label>
+                        </div>
+                        <div class=""> 
+                            <input type="checkbox" id="caw1" value="caw" class="peer hidden" />
+                            <label for="caw1" class="select-none cursor-pointer rounded-lg border-2 border-gray-200
+                            py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 ">Caw</label>
+                        </div>
+                        <div class=""> 
+                            <input type="checkbox" id="kawter1" value="cawter" class="peer hidden" />
+                            <label for="kawter1" class="select-none cursor-pointer rounded-lg border-2 border-gray-200
+                            py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 ">Cawter</label>
+                        </div>
+                        <div class=""> 
+                            <input type="checkbox" id="oli1" value="oli" class="peer hidden" />
+                            <label for="oli1" class="select-none cursor-pointer rounded-lg border-2 border-gray-200
+                            py-3 px-6 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-gray-200 peer-checked:text-gray-900 peer-checked:border-gray-200 ">Oli</label>
+                        </div>
 
                     </div>
 
                 </div>
                 <div class="flex items-center justify-center mt-5">
-                    <div>
-
                         <div
-                            class="box-border relative z-30 inline-flex items-center justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
+                            class="mt-5 box-border relative z-30 inline-flex items-center justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
                             <button id="readyBtn" type="button">Ready</button>
                         </div>
                     </div>
@@ -84,41 +97,10 @@
         </section>
     </section>
 
-
-    <!--Section 2 Wining Metals -->
-
-    <section class="border-2 hidden  bg-curved-line border-black p-2 font-Kanit h-lvh text-white" id="secondSection">
-        <main class="flex justify-around p-2 mt-10">
-            <div class="">
-                <h2 class="text-4xl">Your Choice</h2>
-                <h4 class="text-2xl text-center"><span id="Hchoice1"></span>&nbsp;<span>|</span>&nbsp;<span
-                        id="Hchoice2"></span></h4>
-            </div>
-            <div class="">
-                <h2 class="text-4xl">Computer Choice</h2>
-                <h4 class="text-2xl text-center"><span id="Cchoice1"></span>&nbsp;<span>|</span>&nbsp;<span
-                        id="Cchoice2"></span></h4>
-            </div>
-        </main>
-        <main class="mt-10 p-2 flex items-center justify-center flex-col">
-            <div class="mx-auto">
-                <h3 class="text-2xl">Set Fingers (max : 10 min : 1)</h3>
-            </div>
-            <div class="mt-5">
-                <input id="userFingers" max="10" min="1" class="text-2xl px-4 border-b-2 bg-transparent text-center outline-none" type="number">
-            </div>
-            <div class="mt-12">
-                <div class="box-border relative z-30 inline-flex justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
-                    <button id="startBtn" type="button">Start</button>
-                </div>
-            </div>
-        </main>
-    </section>
-
     <!--Result Section-->
 
-    <section class="border-2 hidden bg-curved-line text-white p-2 font-Kanit h-lvh"id="resultSection">
-        <h1 class="m-0 p-0 text-center text-4xl">Round <span id="roundNumber">1</span></h1>
+    <section class="bg-curved-line hidden text-white p-2 font-Kanit h-lvh"id="resultSection">
+        <h1 class="mt-4 p-0 text-center text-4xl">Round <span id="roundNumber">1</span></h1>
         <main class="mt-5 grid grid-cols-2 items-center gap-4 p-2">
             <div class="">
                 <h4 class="text-2xl text-center"><span id="Hchoice11"></span>&nbsp;<span>|</span>&nbsp;<span
@@ -136,22 +118,35 @@
             <!-- finger image     -->
         <main class="mx-auto mt-5 flex justify-around p-2">
             <div class="grid grid-cols-2 gap-y-3 p-2 w-fit border-2 mx-auto items-center">
-                <div class="border-2 w-fit bg-white"><img id="userImg1" src="/assets/fingers/finger-3.png" alt=""></div>
-                <div class="border-2 w-fit bg-white"><img id="userImg2" src="/assets/fingers/finger-2.png" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="userImg1" src="/assets/fingers/finger-2.png" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="userImg2" src="/assets/fingers/finger-1.png" alt=""></div>
             </div>
             <div class="w-fit flex flex-col items-center justify-center">
+            
+            <!--Round and Score DIsplay-->
+
+            <div class="w-fit flex flex-col items-center justify-center hidden afterStartContainer">
                 <h1 class="text-4xl"><span id="userScoreNumber"></span> - <span id="computerScoreNumber"></span></h1>
+            </div>
+            <!--Set Finger DIv-->
+                <div class="items-center flex flex-col" id="fingerInputContainer">
+                    <h3 class="text-2xl">Set Fingers (max : 10 min : 1)</h3>
+                    <input id="userFingers" max="10" min="1" class="mt-3 text-2xl px-4 border-b-2 bg-transparent text-center outline-none" type="number">
+                    <div class="mt-7 box-border relative z-30 inline-flex justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
+                        <button id="startBtn" type="button">Start</button>
+                    </div>
+                </div>
             </div>
             <div class=" grid grid-cols-2 gap-y-3 p-2 border-2 w-fit mx-auto items-center">
                 <div class="border-2 w-fit bg-white"><img id="cmpImg1" src="/assets/fingers/finger-2.png" alt=""></div>
                 <div class="border-2 w-fit bg-white"><img id="cmpImg2" src="/assets/fingers/finger-3.png" alt=""></div>
             </div>
         </main>
-        <div class="w-fit mx-auto my-5">
-            <p id="winnerFinger" class="text-xl m-0"></p>
-            <h1 class="text-2xl m-0" id="winner"></h1>
+        <div class="w-fit mx-auto hidden afterStartContainer">
+            <p id="winnerFinger" class="text-xl m-0">Desto</p>
+            <h1 class="text-2xl m-0" id="winner">Computer</h1>
         </div>
-        <div class="flex gap-x-10 mt-2 justify-center">
+        <div class="flex gap-x-10 mt-2 justify-center hidden afterStartContainer">
             <div
                 class="box-border relative z-30 inline-flex items-center justify-center w-auto px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
                 <button id="againBtn" type="button">Play again</button>

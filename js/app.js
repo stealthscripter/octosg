@@ -6,10 +6,9 @@ const startBtn = document.getElementById('startBtn')
 const againBtn = document.getElementById('againBtn')
 const setBtn = document.getElementById('setBtn')
 
-
+const afterStartContainer = document.querySelectorAll(".afterStartContainer")
 
 const firstSection = document.getElementById('firstSection')
-const secondSection = document.getElementById('secondSection')
 const resultSection = document.getElementById('resultSection')
 const humanChoice1 = document.getElementById('Hchoice1')
 const humanChoice2 = document.getElementById('Hchoice2')
@@ -56,6 +55,30 @@ const amharicObj = {
 let computerFingers
 
 const fingerValues = ['desto','finger','caw','cawter','oli']
+
+
+// Check CheckBOXS
+function onlyOneCheckBox() {
+	var checkboxgroup = document.getElementById('checkboxgroup').getElementsByTagName("input");
+	
+    //Note #2 Change max limit here as necessary
+    var limit = 2;
+  
+	for (var i = 0; i < checkboxgroup.length; i++) {
+		checkboxgroup[i].onclick = function() {
+			var checkedcount = 0;
+				for (var i = 0; i < checkboxgroup.length; i++) {
+				checkedcount += (checkboxgroup[i].checked) ? 1 : 0;
+			}
+			if (checkedcount > limit) {
+				console.log("You can select maximum of " + limit + " checkbox.");
+				alert("You can select maximum of " + limit + " checkbox.");
+				this.checked = false;
+			}
+		}
+	}
+}
+onlyOneCheckBox();
 
 let rounds = 0
 
@@ -143,7 +166,7 @@ const checkWinner = (userChoice , computerChoice , computerFingers , userFingers
 readyBtn.addEventListener('click',  (e) => {
     e.preventDefault()
     firstSection.classList.add('hidden')
-    secondSection.classList.remove('hidden')
+    resultSection.classList.remove('hidden')
     document.querySelectorAll('[type="checkbox"]').forEach(item => {
         if(item.checked == true){
             userChoice.push(item.value)
