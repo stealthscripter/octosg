@@ -103,30 +103,30 @@
         <h1 class="mt-4 p-0 text-center text-4xl">Round <span id="roundNumber">1</span></h1>
         <main class="mt-5 grid grid-cols-2 items-center gap-4 p-2">
             <div class="">
-                <h4 class="text-2xl text-center"><span id="Hchoice11"></span>&nbsp;<span>|</span>&nbsp;<span
-                    id="Hchoice22"></span></h4>
-                <h1 class="text-4xl text-center w-full">Human Fingers&nbsp;| <span id="hNoFingers"
+                <h4 class="text-2xl text-center"><span id="userchoice1"></span>&nbsp;<span>|</span>&nbsp;<span
+                    id="userchoice2"></span></h4>
+                <h1 class="text-4xl text-center w-full">Human Fingers&nbsp;| <span id="userfingers"
                         class="text-orange-600 "></span></h1>
             </div>
             <div class="">
-                <h4 class="text-2xl text-center"><span id="Cchoice11"></span>&nbsp;<span>|</span>&nbsp;<span
-                    id="Cchoice22"></span></h4>
-                <h1 class="text-4xl text-center w-full">Computer Fingers&nbsp;| <span id="cNoFingers"
+                <h4 class="text-2xl text-center"><span id="computerchoice1"></span>&nbsp;<span>|</span>&nbsp;<span
+                    id="computerchoice2"></span></h4>
+                <h1 class="text-4xl text-center w-full">Computer Fingers&nbsp;| <span id="computerfingers"
                         class="text-orange-600"></span></h1>
             </div>
         </main>
             <!-- finger image     -->
         <main class="mx-auto mt-5 flex justify-around p-2">
             <div class="grid grid-cols-2 gap-y-3 p-2 w-fit border-2 mx-auto items-center">
-                <div class="border-2 w-fit bg-white"><img id="userImg1" src="/assets/fingers/finger-2.png" alt=""></div>
-                <div class="border-2 w-fit bg-white"><img id="userImg2" src="/assets/fingers/finger-1.png" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="userImg1" src="" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="userImg2" src="" alt=""></div>
             </div>
             <div class="w-fit flex flex-col items-center justify-center">
             
             <!--Round and Score DIsplay-->
 
             <div class="w-fit flex flex-col items-center justify-center hidden afterStartContainer">
-                <h1 class="text-4xl"><span id="userScoreNumber"></span> - <span id="computerScoreNumber"></span></h1>
+                <h1 class="text-4xl"><span id="userscore"></span> - <span id="computerscore"></span></h1>
             </div>
             <!--Set Finger DIv-->
                 <div class="items-center flex flex-col" id="fingerInputContainer">
@@ -138,8 +138,8 @@
                 </div>
             </div>
             <div class=" grid grid-cols-2 gap-y-3 p-2 border-2 w-fit mx-auto items-center">
-                <div class="border-2 w-fit bg-white"><img id="cmpImg1" src="/assets/fingers/finger-2.png" alt=""></div>
-                <div class="border-2 w-fit bg-white"><img id="cmpImg2" src="/assets/fingers/finger-3.png" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="cmpImg1" src="" alt=""></div>
+                <div class="border-2 w-fit bg-white"><img id="cmpImg2" src="" alt=""></div>
             </div>
         </main>
         <div class="w-fit mx-auto hidden afterStartContainer">

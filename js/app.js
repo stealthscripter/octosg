@@ -2,9 +2,41 @@
 
 const readyBtn = document.getElementById('readyBtn')
 const startBtn = document.getElementById('startbtn')
+const setBtn = document.getElementById('setBtn')
+const againBtn = document.getElementById('againBtn')
+
+
 const sectionOne = document.getElementById('sectionone')
 const sectionTwo = document.getElementById('sectiontwo')
 
+// Text Manipulation
+
+const computer_choice1_txt = document.getElementById('computerchoice1')
+const computer_choice2_txt = document.getElementById('computerchoice2')
+const user_choice1_txt = document.getElementById('userchoice1')
+const user_choice2_txt = document.getElementById('userchoice2')
+
+const winner_finger_txt = document.getElementById('winnerFinger')
+const winner_txt = document.getElementById('winner')
+
+const user_score_txt = document.getElementById('userscore')
+const computer_score_txt = document.getElementById('computerscore')
+
+// Display Manipulation
+const value_accept_div = document.getElementById('fingerInputContainer')
+const result_div = document.getElementsByClassName('afterStartContainer')
+
+const computer_fingers_txt = document.getElementById('computerfingers')
+const user_fingers_txt = document.getElementById('userfingers')
+
+
+
+const userImage1 = document.getElementById('userImg1')
+const userImage2 = document.getElementById('userImg2')
+
+const round_counter = document.getElementById('roundNumber')
+const computerImage1 = document.getElementById('cmpImg1')
+const computerImage2 = document.getElementById('cmpImg2')
 
 
 const game_value = {'desto' : 1 , 'finger' : 2, 'caw' : 3 , 'cawter' : 4 , 'oli' : 5}
@@ -13,17 +45,46 @@ const game_value = {'desto' : 1 , 'finger' : 2, 'caw' : 3 , 'cawter' : 4 , 'oli'
 let user_choices = []
 let computer_choices = []
 let finger_value
+let computer_finger_value
+let winner_finger
+let winner
+let user_score = 0
+let computer_score = 0
+let round = 1
 
-
-
+// Check CheckBOXS
+function onlyOneCheckBox() {
+	let checkboxgroup = document.getElementById('checkboxgroup').getElementsByTagName("input");
+	
+    //Note #2 Change max limit here as necessary
+    let limit = 2;
+  
+	for (let i = 0; i < checkboxgroup.length; i++) {
+		checkboxgroup[i].onclick = function() {
+			var checkedcount = 0;
+				for (var i = 0; i < checkboxgroup.length; i++) {
+				checkedcount += (checkboxgroup[i].checked) ? 1 : 0;
+			}
+			if (checkedcount > limit) {
+				console.log("You can select maximum of " + limit + " checkbox.");
+				alert("You can select maximum of " + limit + " checkbox.");
+				this.checked = false;
+			}
+		}
+	}
+}
+onlyOneCheckBox();
 
 
 const acceptFingerValue = () => {
     return Number(document.getElementById('inputfingers').value)
 }
+const removeAcceptedFinger = () =>{
+    return document.getElementById('inputfingers').value = ''
+}
 const generatePossibleFingers = (acceptFingerValueFunc) =>{
     let user_finger_value = acceptFingerValueFunc()
-    const computer_finger_value = Math.floor(Math.random() * 11)
+    computer_finger_value = Math.floor(Math.random() * 11)
     const total_finger_value  = computer_finger_value + user_finger_value
     let filtered_finger_value
     total_finger_value % 5 == 0 ? filtered_finger_value = 5 : filtered_finger_value = total_finger_value % 5
@@ -61,37 +122,131 @@ readyBtn.addEventListener('click', ()=>{
     computer_choices = makeComputerChoice(makeUserChoice)
     console.log(user_choices )
     console.log(computer_choices)
+    // Text Manipulation next Page
+    computer_choice1_txt.textContent = computer_choices[0]
+    computer_choice2_txt.textContent = computer_choices[1]
+
+    user_choice1_txt.textContent = user_choices[0]
+    user_choice2_txt.textContent = user_choices[1]
+
     // Dom Manipulation
     sectionOne.classList.add('hidden')
     sectionTwo.classList.remove('hidden')
 })
 
 const checkWinner = () => {
-    let winner_finger =  Object.keys(game_value).filter(key => game_value[key] === finger_value).toString()
+    winner_finger =  Object.keys(game_value).filter(key => game_value[key] === finger_value).toString()
+    
     if(user_choices.includes(winner_finger)){
+        winner = 'You Won'
+        user_score++
         console.log("Win Won: " + winner_finger) 
     }
     else if(computer_choices.includes(winner_finger)){
+        computer_score++
+        winner = 'Computer Won'
         console.log("Computer Won: " + winner_finger)
     }
     else{
+        winner = 'Draw'
         console.log("Draw :" + winner_finger)
     }
 }
 startBtn.addEventListener('click',() => {
+
     finger_value = generatePossibleFingers(acceptFingerValue)
+    user_fingers_txt.textContent = acceptFingerValue() 
+    computer_fingers_txt.textContent = computer_finger_value 
     checkWinner()
+    winner_finger_txt.textContent = winner_finger
+    winner_txt.textContent = winner
+    user_score_txt.textContent = user_score
+    computer_score_txt.textContent = computer_score
+    changeImage(computer_finger_value , acceptFingerValue)
+    value_accept_div.classList.add('hidden')
+    for (var i = 0; i < result_div.length; i++) {
+        result_div[i].classList.remove("hidden");
+    }
 })
 
+const playAgain = () => {
+    round_counter.textContent = round
+    computerImage1.src = ""
+    computerImage2.src = ""
+    userImage1.src = ""
+    userImage2.src = ""
+    removeAcceptedFinger()
+    value_accept_div.classList.remove('hidden')
+    for (var i = 0; i < result_div.length; i++) {
+        result_div[i].classList.add("hidden");
+    }
+    user_fingers_txt.textContent = ''
+    computer_fingers_txt.textContent = ''
+}
+againBtn.addEventListener('click',() => {
+    round++;
+    playAgain()
+})
 
+setBtn.addEventListener('click',() => {
+    user_choices = []
+    computer_choices = []
+    finger_value
+    computer_finger_value
+    winner_finger
+    winner
+    user_score = 0
+    computer_score = 0
+    round = 1
 
+    document.querySelectorAll('[type="checkbox"]').forEach(item => {
+        item.checked = false
+    })
+   playAgain()
+    sectionTwo.classList.add('hidden')
+    sectionOne.classList.remove('hidden')
+})
 
+const changeImage = (computerFingerAmount , humanFingerAmounts) => {
 
+    let humanFingerAmount = humanFingerAmounts()
+    computerImage1.src = ""
+    computerImage2.src = ""
+    userImage1.src = ""
+    userImage2.src = ""
+    if (computerFingerAmount <= 5){
+        computerImage2.src= `/assets/fingers/finger-${0}.png`
+        computerImage1.src= `/assets/fingers/finger-${computerFingerAmount}.png`
+    }
+    else{
+        if(computerFingerAmount % 2 == 0){
+            computerImage1.src= `/assets/fingers/finger-${computerFingerAmount / 2}.png`
+            computerImage2.src= `/assets/fingers/finger-${computerFingerAmount / 2}.png`
+        }
+        else{
+            roundNumber = Math.floor(computerFingerAmount/2)
+            computerImage1.src= `/assets/fingers/finger-${roundNumber + 1}.png`
+            computerImage2.src= `/assets/fingers/finger-${roundNumber}.png`
+        }
+    }
 
-
-
-
-
+    if (humanFingerAmount <= 5){
+        userImage1.src= `/assets/fingers/finger-${0}.png`
+        userImage2.src= `/assets/fingers/finger-${humanFingerAmount}.png`
+        
+    }
+    else{
+        if(humanFingerAmount % 2 == 0){
+            userImage1.src= `/assets/fingers/finger-${humanFingerAmount / 2}.png`
+            userImage2.src= `/assets/fingers/finger-${humanFingerAmount / 2}.png`
+        }
+        else{
+            roundNumber = Math.floor(humanFingerAmount/2)
+            userImage1.src= `/assets/fingers/finger-${roundNumber + 1}.png`
+            userImage2.src= `/assets/fingers/finger-${roundNumber}.png`
+        }
+    }
+}
 
 
 // // widget
